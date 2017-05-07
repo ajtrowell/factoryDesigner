@@ -32,7 +32,7 @@ var items = {
     engine: {
         name: "electricEngine",
         craftTime: 10,
-        recipeArray: [[1,"steelPlate"],[1,"ironGear"],[2,"pipes"]],
+        recipeArray: [[1,"steelPlate"],[1,"ironGear"],[2,"pipe"]],
         outputQty: 1
     },
     electricFurnace: {
@@ -208,7 +208,16 @@ items.getRecipeRequirements = function(itemName, reqItemsPerSecond, recursionDep
         } else if( this.isValid(item) ) { // Valid, non-raw item. Recursion time!
             nestedReqStruct = this.getRecipeRequirements(item, 
                 rateStruct[item].itemsPerSecond, ++recursionDepth);
+                
             // Now sum nestedReqStruct with requirementsStruct
+            // Sum Raw Material rates:
+            for (let rawItem in nestedReqStruct.rawItem) {
+                sumRawItems(rawItem,nestedReqStruct.rawItems[rawItem].itemsPerSecond);
+            } // for rawItem in nestedReqStruct.rawItem
+            // Sum Assembler Quantities:
+            for (let itemAssembler in nestedReqStruct.assemblers) {
+                sumAssemblers(itemAssembler, nestedReqStruct.assemblers[itemAssembler].assemblerQty); 
+            } // for itemAssembler in nestedReqStruct.assemblers
 
             
             
