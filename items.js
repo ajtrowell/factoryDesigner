@@ -144,7 +144,7 @@ items.getRecipeRequirements = function(itemName, reqItemsPerSecond, recursionDep
     // Fill requirementsStruct.rawItems from items.raw
     this.raw.forEach(function(rawItemName){
         requirementsStruct.rawItems[rawItemName] = {}; // Initialize Struct for Item.
-        requirementsStruct.rawItems[rawItemName].name = rawitemName; 
+        requirementsStruct.rawItems[rawItemName].name = rawItemName; 
         requirementsStruct.rawItems[rawItemName].itemsPerSecond = 0; // Initialize to zero.
     },this);
 
@@ -203,5 +203,5 @@ items.getRecipeRequirements = function(itemName, reqItemsPerSecond, recursionDep
     
    
 
-    return  requirementsObject;
+    return  requirementsStruct;
 }
