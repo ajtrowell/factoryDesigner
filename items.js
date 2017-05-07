@@ -115,10 +115,13 @@ var items = {
     },
 
     // Raw items, base level ingredients.
-    raw : ["ironPlate","copperPlate","coal","steelPlate",
-        "greenCircuit","redCircuit",
+    raw : ["ironPlate","copperPlate","coal",
         "stoneBricks","lubricant","water"]
 };
+
+items.raw.push("steelPlate");
+items.raw.push("greenCircuit");
+items.raw.push("redCircuit");
 
 
 // Need to create a "show raw items" function
