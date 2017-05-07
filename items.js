@@ -30,7 +30,7 @@ var items = {
         outputQty: 1
     },
     engine: {
-        name: "electricEngine",
+        name: "engine",
         craftTime: 10,
         recipeArray: [[1,"steelPlate"],[1,"ironGear"],[2,"pipe"]],
         outputQty: 1
@@ -41,9 +41,39 @@ var items = {
         recipeArray: [[10,"steelPlate"],[5,"redCircuit"],[10,"stoneBricks"]],
         outputQty: 1
     },
+    militaryScience: {
+        name: "militaryScience",
+        craftTime: 10,
+        recipeArray: [[1,"piercingMagazine"],[1,"grenade"],[1,"gunTurret"]],
+        outputQty: 2
+    },
+    piercingMagazine: {
+        name: "piercingMagazine",
+        craftTime: 3,
+        recipeArray: [[1,"magazine"],[1,"steelPlate"],[5,"copperPlate"]],
+        outputQty: 1
+    },
+    magazine: {
+        name: "magazine",
+        craftTime: 1,
+        recipeArray: [[4,"ironPlate"]],
+        outputQty: 1
+    },
+    grenade: {
+        name: "grenade",
+        craftTime: 8,
+        recipeArray: [[5,"ironPlate"],[10,"coal"]],
+        outputQty: 1
+    },
+    gunTurret: {
+        name: "gunTurret",
+        craftTime: 8,
+        recipeArray: [[10,"ironGear"],[10,"copperPlate"],[20,"ironPlate"]],
+        outputQty: 1
+    },
 
     // Raw items, base level ingredients.
-    raw : ["ironPlate","copperPlate","steelPlate",
+    raw : ["ironPlate","copperPlate","coal","steelPlate",
         "greenCircuit","redCircuit",
         "stoneBricks","lubricant","water"]
 };
@@ -52,8 +82,8 @@ items.list = function() {
     var keys = Object.keys(this);
     var outputList = [];
     show("");
-    show("*****************************"); 
     show("Items List:");
+    show("*****************************"); 
     for(let i = 0; i<keys.length; ++i) {
         if( this.isValid(keys[i]) ) { // Only display items, not methods
             show(keys[i]);
@@ -66,8 +96,9 @@ items.list = function() {
 
 items.showRecipe = function(itemName) {
     if(this.isValid(itemName)) {
-        show("*****************************"); 
+        show("");
         show("Recipe for:  " + this[itemName].name) // Heading
+        show("*****************************"); 
         show(this[itemName].outputQty + "x crafted in " +this[itemName].craftTime + " seconds.")
         if (this[itemName].recipeArray.length > 0) {
             for(let i = 0; i<this[itemName].recipeArray.length; ++i) {
@@ -233,26 +264,33 @@ items.getRecipeRequirements = function(itemName, reqItemsPerSecond, recursionDep
     // Display output only if root instance
     if (recursionDepth == 0) {
         show("");
-        show("**************************");
-        show("# Factory Design Results #");
-        
+        show("******************************");
+        show("####### Factory Design #######");
+        show("******************************");
         // Summary of Objective
+        show("Objective: Produce " + reqItemsPerSecond.toFixed(2) + "  " + itemName + " per second.")
+        if(isRounded) { show("Goal rate rounded up to: " + itemsPerSecond.toFixed(2));}
+        
         // Was top level rounded up?
         
+        
         // Number of assemblers required for each item
+        show("")
         show("Required Assemblers:")
+        show("------------------------------");
         for (let itemAssembler in requirementsStruct.assemblers) {
-            show(requirementsStruct.assemblers[itemAssembler].assemblerQty + " " + itemAssembler + 
+            show(requirementsStruct.assemblers[itemAssembler].assemblerQty.toFixed(2) + " " + itemAssembler + 
                 " Assemblers");
         } // for itemAssembler in requirementsStruct.assemblers
         
         // itemsPerSecond for each raw material
         show("");
         show("Required Raw Material Rates:")
+        show("------------------------------");
         for (let rawItem in requirementsStruct.rawItems) {
             // Only list items with quantity > 0
             if (requirementsStruct.rawItems[rawItem].itemsPerSecond > 0) {
-                show( requirementsStruct.rawItems[rawItem].itemsPerSecond + 
+                show( requirementsStruct.rawItems[rawItem].itemsPerSecond.toFixed(2) + 
                     " units/sec of " + rawItem);
             }
         } // for rawItem in requirementsStruct.rawItem

@@ -4,6 +4,7 @@
 items.list();
 items.showRecipe("pumpJack");
 var reqStruct = items.getRecipeRequirements("purpleScience",1);
+var reqStruct = items.getRecipeRequirements("militaryScience",1);
 
 
     
