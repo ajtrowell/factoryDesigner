@@ -73,9 +73,20 @@ items.showRecipe = function(itemName) {
 
 items.isValid = function(itemName) {
     // Verify that itemName is a property, and that it is a valid item.
-    return (this[itemName] != undefined) && (this[itemName].craftTime != undefined) 
+    return (typeof this[itemName] != "undefined") && (this[itemName].craftTime != undefined);
 }
 
+items.getItemsPerSecond = function(itemName, numAssemblers) {
+    // optional numAssemblers argument:
+    if(typeof numAssemblers === "undefined") { numAssemblers = 1;} // default value
+    
+    if (this.isValid(itemName)) { // validate itemName.
+       var itemsPerSecond = this[itemName].outputQty * numAssemblers/ this[itemName].craftTime;
+       showDebug( numAssemblers + " assembler averages "+ itemsPerSecond + " " 
+            + this[itemName].name + " per second." );
+       return itemsPerSecond;
+   } 
+}
 
 
 var rawItems = ["ironPlate","copperPlate","steelPlate",

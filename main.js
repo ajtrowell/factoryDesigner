@@ -37,6 +37,11 @@ function show(arg) {
     document.write(arg + "<br>");
 }
 
+function showDebug(arg) {
+    // show(arg); // temp solution
+    console.log(arg);
+}
+
 function showError(arg) {
     show(arg); // temp solution
 }
