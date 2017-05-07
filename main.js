@@ -21,7 +21,8 @@ function showDebug(arg) {
 
 function showError(arg) {
     console.log(arg);
-    document.write(arg + "<br>");
+    document.write("<font color='red'>" + arg + "</font><br>");
+    alert(arg);
 }
 
 // function prototypes
