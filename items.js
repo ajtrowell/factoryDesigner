@@ -82,10 +82,41 @@ items.getItemsPerSecond = function(itemName, numAssemblers) {
     
     if (this.isValid(itemName)) { // validate itemName.
        var itemsPerSecond = this[itemName].outputQty * numAssemblers/ this[itemName].craftTime;
-       showDebug( numAssemblers + " assembler averages "+ itemsPerSecond + " " 
+       showDebug( numAssemblers + " assembler averages "+ itemsPerSecond.toFixed(2) + " " 
             + this[itemName].name + " per second." );
        return itemsPerSecond;
    } 
+}
+
+items.getIngredientsPerSecond = function(itemName, numAssemblers) {
+    // optional numAssemblers argument:
+    if(typeof numAssemblers === "undefined") { numAssemblers = 1;} // default value
+    var ingredientsStruct = {};
+
+    
+    if (this.isValid(itemName)) { // validate itemName.
+       var itemsPerSecond = this[itemName].outputQty * numAssemblers/ this[itemName].craftTime;
+
+        // Populate ingredientsStruct by multiplying recipeArray
+        var recipeArray = this[itemName].recipeArray; // copy for convenience.
+        recipeArray.forEach(function(recipe){
+            ingredientsStruct[recipe[1]] = {}; // Initialize a sub object
+            ingredientsStruct[recipe[1]].name = recipe[1];
+            ingredientsStruct[recipe[1]].itemsPerSecond = 
+                recipe[0] * numAssemblers / this[itemName].craftTime;
+        },this);
+
+        showDebug( numAssemblers + " assembler averages "+ itemsPerSecond.toFixed(2) + " " 
+            + this[itemName].name + " per second, and requires:" );
+        for (let item in ingredientsStruct) {
+            if (ingredientsStruct.hasOwnProperty(item)) {
+                showDebug( ingredientsStruct[item].name + " -> " + 
+                    ingredientsStruct[item].itemsPerSecond.toFixed(2) + " per second");
+            }
+        }
+            
+       return ingredientsStruct;
+   } // if valid itemName 
 }
 
 
