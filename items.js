@@ -131,6 +131,11 @@ items.getIngredientsPerSecond = function(itemName, numAssemblers) {
 items.getRecipeRequirements = function(itemName, reqItemsPerSecond, rawItemArray, recursionDepth) {
     // recursionDepth is mainly used for debugging by counting UP as depth increases.
     if(typeof recursionDepth === "undefined") { recursionDepth = 0;} // default value
+    // rawItemArray is also optional. Default is items.raw array.
+    if(typeof rawItemArray === "undefined") { rawitemArray = this.raw;} // default value
+    
+    var isRounded = false; // Indicates if top level was rounded.
+    var itemsPerSecond = reqItemsPerSecond; // Holds true rate in the event of rounding up.
     
     // initialize requirementsStruct
     var requirementsStruct = {
@@ -139,16 +144,65 @@ items.getRecipeRequirements = function(itemName, reqItemsPerSecond, rawItemArray
         rawItems: {}, 
     };
     // Fill requirementsStruct.rawItems from items.raw
-    this.raw.forEach(function(rawItemName){
+    rawItemArray.forEach(function(rawItemName){
         requirementsStruct.rawItems[rawItemName] = {}; // Initialize Struct for Item.
         requirementsStruct.rawItems[rawItemName].name = rawitemName; 
         requirementsStruct.rawItems[rawItemName].itemsPerSecond = 0; // Initialize to zero.
     },this);
 
+
+    // Define Useful functions for summing assemblers and raw rates:
+    var sumAssemblers = function(itemName, assemblerQty) {
+        if ( typeof requirementsStruct.assemblers[itemName] === "undefined" ) {
+            requirementsStruct.assemblers[itemName] = {};
+            requirementsStruct.assemblers[itemName].name = itemName;
+            requirementsStruct.assemblers[itemName].assemblerQty = 0;
+        }
+        requirementsStruct.assemblers[itemName].assemblerQty += assemblerQty;
+    }
+    
+    var sumRawItems = function(itemName, itemsPerSecond) {
+        if ( typeof requirementsStruct.rawItems[itemName] === "undefined" ) {
+            requirementsStruct.rawItems[itemName] = {};
+            requirementsStruct.rawItems[itemName].name = itemName;
+            requirementsStruct.rawItems[itemName].itemsPerSecond = 0;
+        }
+        requirementsStruct.assemblers[itemName].itemsPerSecond += itemsPerSecond;
+    }
+
+
     // Initialization complete. Begin searching for required assemblers and raw ingredient rates.
     // Fractional assemblers are acceptable, and will be summed together, since the fractional 
     // ingredient requirements are accurate.
 
+    // Number of assemblers required to meet reqItemsPerSecond. This will ONLY be rounded up IF 
+    // this is the top level, and recursionDepth == 0.  At other levels, fractions are useful.
+    // Required assemblers is the ratio of the requiredItemsPerSecond and the single 
+    // assembler itemsPerSecond rate.
+    var assemblersRequired  = reqItemsPerSecond / this.getItemsPerSecond(itemName,1);
+    if(recursionDepth == 0) {
+        if( assemblersRequired != Math.ceil(assemblersRequired) ) { // Rounding changed the value
+            assemblersRequired = Math.ceil(assemblersRequired); 
+            isRounded = true;
+            itemsPerSecond = this.getItemsPerSecond(itemName,assemblersRequired);
+        }
+    }
+
+
+    // Add current level assemblers required to requirementsStruct:
+    sumAssemblers(itemName, assemblersRequired); // Added current level assembler requirement.
+    
+
+
+    // What item rates are required for this item recipie?
+    var rateStruct = this.getIngredientsPerSecond(itemName, assemblersRequired);
+
+    // Raw ingredients should be summed into requirementsStruct.rawItems
+    // Also, non-raw ingredients should recursively be called with this function, 
+    // items.getRecipeRequirements(), and the resulting 
+    // additional requirementStruct values also added to the assembler and raw 
+    // ingredient totals. Recursion stops when all ingredients are raw.
+    
    
 
     return  requirementsObject;
