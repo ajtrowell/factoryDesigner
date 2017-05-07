@@ -24,9 +24,8 @@ function GameItem(name, craftTime, recipeArray, outputQty) {
                showError("Error, recipeArray not formed correctly.");
             }
         }
-
     
-    if (typeof outputQty === undefined) // handle optional argument outputQty
+    if (typeof outputQty === "undefined") // handle optional argument outputQty
         { this.outputQty = 1;} // default value
     else 
         {this.outputQty = outputQty;}
