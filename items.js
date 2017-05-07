@@ -211,7 +211,7 @@ items.getRecipeRequirements = function(itemName, reqItemsPerSecond, recursionDep
                 
             // Now sum nestedReqStruct with requirementsStruct
             // Sum Raw Material rates:
-            for (let rawItem in nestedReqStruct.rawItem) {
+            for (let rawItem in nestedReqStruct.rawItems) {
                 sumRawItems(rawItem,nestedReqStruct.rawItems[rawItem].itemsPerSecond);
             } // for rawItem in nestedReqStruct.rawItem
             // Sum Assembler Quantities:
