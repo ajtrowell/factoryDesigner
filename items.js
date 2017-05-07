@@ -41,7 +41,11 @@ var items = {
         recipeArray: [[10,"steelPlate"],[5,"redCircuit"],[10,"stoneBricks"]],
         outputQty: 1
     },
-    
+
+    // Raw items, base level ingredients.
+    raw : ["ironPlate","copperPlate","steelPlate",
+        "greenCircuit","redCircuit",
+        "stoneBricks","lubricant","water"]
 };
 
 items.list = function() {
@@ -76,13 +80,18 @@ items.isValid = function(itemName) {
     return (typeof this[itemName] != "undefined") && (this[itemName].craftTime != undefined);
 }
 
+items.isRaw = function(itemName) {
+   // Verify that itemName is an element of the array at items.raw 
+   return this.raw.includes(itemName);
+}
+
 items.getItemsPerSecond = function(itemName, numAssemblers) {
     // optional numAssemblers argument:
     if(typeof numAssemblers === "undefined") { numAssemblers = 1;} // default value
     
     if (this.isValid(itemName)) { // validate itemName.
        var itemsPerSecond = this[itemName].outputQty * numAssemblers/ this[itemName].craftTime;
-       showDebug( numAssemblers + " assembler averages "+ itemsPerSecond.toFixed(2) + " " 
+       showDebug( numAssemblers + " assembler produces "+ itemsPerSecond.toFixed(2) + " " 
             + this[itemName].name + " per second." );
        return itemsPerSecond;
    } 
@@ -106,7 +115,7 @@ items.getIngredientsPerSecond = function(itemName, numAssemblers) {
                 recipe[0] * numAssemblers / this[itemName].craftTime;
         },this);
 
-        showDebug( numAssemblers + " assembler averages "+ itemsPerSecond.toFixed(2) + " " 
+        showDebug( numAssemblers + " assembler produces "+ itemsPerSecond.toFixed(2) + " " 
             + this[itemName].name + " per second, and requires:" );
         for (let item in ingredientsStruct) {
             if (ingredientsStruct.hasOwnProperty(item)) {
@@ -120,6 +129,3 @@ items.getIngredientsPerSecond = function(itemName, numAssemblers) {
 }
 
 
-var rawItems = ["ironPlate","copperPlate","steelPlate",
-    "greenCircuit","redCircuit",
-    "stoneBricks","lubricant"];
