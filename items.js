@@ -51,12 +51,16 @@ var items = {
 items.list = function() {
     var keys = Object.keys(this);
     var outputList = [];
+    show("");
+    show("*****************************"); 
+    show("Items List:");
     for(let i = 0; i<keys.length; ++i) {
         if( this.isValid(keys[i]) ) { // Only display items, not methods
             show(keys[i]);
             outputList.push(keys[i]);
         }
     }
+    show("");
     return true; // no errors!
 }
 
@@ -207,7 +211,7 @@ items.getRecipeRequirements = function(itemName, reqItemsPerSecond, recursionDep
             sumRawItems(item,rateStruct[item].itemsPerSecond);
         } else if( this.isValid(item) ) { // Valid, non-raw item. Recursion time!
             nestedReqStruct = this.getRecipeRequirements(item, 
-                rateStruct[item].itemsPerSecond, ++recursionDepth);
+                rateStruct[item].itemsPerSecond, 1+recursionDepth);
                 
             // Now sum nestedReqStruct with requirementsStruct
             // Sum Raw Material rates:
@@ -226,6 +230,34 @@ items.getRecipeRequirements = function(itemName, reqItemsPerSecond, recursionDep
         }
         
     } // for item in rateStruct
+    // Display output only if root instance
+    if (recursionDepth == 0) {
+        show("");
+        show("**************************");
+        show("# Factory Design Results #");
+        
+        // Summary of Objective
+        // Was top level rounded up?
+        
+        // Number of assemblers required for each item
+        show("Required Assemblers:")
+        for (let itemAssembler in requirementsStruct.assemblers) {
+            show(requirementsStruct.assemblers[itemAssembler].assemblerQty + " " + itemAssembler + 
+                " Assemblers");
+        } // for itemAssembler in requirementsStruct.assemblers
+        
+        // itemsPerSecond for each raw material
+        show("");
+        show("Required Raw Material Rates:")
+        for (let rawItem in requirementsStruct.rawItems) {
+            // Only list items with quantity > 0
+            if (requirementsStruct.rawItems[rawItem].itemsPerSecond > 0) {
+                show( requirementsStruct.rawItems[rawItem].itemsPerSecond + 
+                    " units/sec of " + rawItem);
+            }
+        } // for rawItem in requirementsStruct.rawItem
+        show("");
+    }
    
 
     return  requirementsStruct;

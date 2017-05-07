@@ -19,7 +19,8 @@ function showDebug(arg) {
 }
 
 function showError(arg) {
-    show(arg); // temp solution
+    console.log(arg);
+    document.write(arg + "<br>");
 }
 
 // function prototypes
