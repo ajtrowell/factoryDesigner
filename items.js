@@ -48,13 +48,35 @@ items.list = function() {
     var keys = Object.keys(this);
     var outputList = [];
     for(let i = 0; i<keys.length; ++i) {
-        if(this[keys[i]].craftTime != undefined) { // Only display items, not methods
+        if( this.isValid(keys[i]) ) { // Only display items, not methods
             show(keys[i]);
             outputList.push(keys[i]);
         }
     }
     return true; // no errors!
 }
+
+items.showRecipe = function(itemName) {
+    if(this.isValid(itemName)) {
+        show("*****************************"); 
+        show("Recipe for:  " + this[itemName].name) // Heading
+        show(this[itemName].outputQty + "x crafted in " +this[itemName].craftTime + " seconds.")
+        if (this[itemName].recipeArray.length > 0) {
+            for(let i = 0; i<this[itemName].recipeArray.length; ++i) {
+                show( this[itemName].recipeArray[i][0] + "   " + this[itemName].recipeArray[i][1] );
+            }
+            show("");
+            
+        }
+    }
+}
+
+items.isValid = function(itemName) {
+    // Verify that itemName is a property, and that it is a valid item.
+    return (this[itemName] != undefined) && (this[itemName].craftTime != undefined) 
+}
+
+
 
 var rawItems = ["ironPlate","copperPlate","steelPlate",
     "greenCircuit","redCircuit",
