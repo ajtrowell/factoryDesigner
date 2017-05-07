@@ -165,7 +165,7 @@ items.getRecipeRequirements = function(itemName, reqItemsPerSecond, recursionDep
             requirementsStruct.rawItems[itemName].name = itemName;
             requirementsStruct.rawItems[itemName].itemsPerSecond = 0;
         }
-        requirementsStruct.assemblers[itemName].itemsPerSecond += itemsPerSecond;
+        requirementsStruct.rawItems[itemName].itemsPerSecond += itemsPerSecond;
     }
 
 
@@ -194,13 +194,29 @@ items.getRecipeRequirements = function(itemName, reqItemsPerSecond, recursionDep
 
     // What item rates are required for this item recipie?
     var rateStruct = this.getIngredientsPerSecond(itemName, assemblersRequired);
+    var nestedReqStruct = {}; // used for non-raw ingredients. Temp space.
 
     // Raw ingredients should be summed into requirementsStruct.rawItems
     // Also, non-raw ingredients should recursively be called with this function, 
     // items.getRecipeRequirements(), and the resulting 
     // additional requirementStruct values also added to the assembler and raw 
     // ingredient totals. Recursion stops when all ingredients are raw.
-    
+
+    for (let item in rateStruct) {
+        if( this.isRaw(item) ) {
+            sumRawItems(item,rateStruct[item].itemsPerSecond);
+        } else if( this.isValid(item) ) { // Valid, non-raw item. Recursion time!
+            nestedReqStruct = this.getRecipeRequirements(item, 
+                rateStruct[item].itemsPerSecond, ++recursionDepth);
+            // Now sum nestedReqStruct with requirementsStruct
+
+            
+            
+        } else { // Error, invalid item
+            showError("A value returned by getIngredientsPerSecond was not a valid item!");
+        }
+        
+    } // for item in rateStruct
    
 
     return  requirementsStruct;
