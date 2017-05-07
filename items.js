@@ -128,4 +128,28 @@ items.getIngredientsPerSecond = function(itemName, numAssemblers) {
    } // if valid itemName 
 }
 
+items.getRecipeRequirements = function(itemName, reqItemsPerSecond, rawItemArray, recursionDepth) {
+    // recursionDepth is mainly used for debugging by counting UP as depth increases.
+    if(typeof recursionDepth === "undefined") { recursionDepth = 0;} // default value
+    
+    // initialize requirementsStruct
+    var requirementsStruct = {
+        // should assemblers and rawItems be arrays or objects?
+        assemblers: {},
+        rawItems: {}, 
+    };
+    // Fill requirementsStruct.rawItems from items.raw
+    this.raw.forEach(function(rawItemName){
+        requirementsStruct.rawItems[rawItemName] = {}; // Initialize Struct for Item.
+        requirementsStruct.rawItems[rawItemName].name = rawitemName; 
+        requirementsStruct.rawItems[rawItemName].itemsPerSecond = 0; // Initialize to zero.
+    },this);
 
+    // Initialization complete. Begin searching for required assemblers and raw ingredient rates.
+    // Fractional assemblers are acceptable, and will be summed together, since the fractional 
+    // ingredient requirements are accurate.
+
+   
+
+    return  requirementsObject;
+}
