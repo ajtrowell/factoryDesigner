@@ -128,11 +128,9 @@ items.getIngredientsPerSecond = function(itemName, numAssemblers) {
    } // if valid itemName 
 }
 
-items.getRecipeRequirements = function(itemName, reqItemsPerSecond, rawItemArray, recursionDepth) {
+items.getRecipeRequirements = function(itemName, reqItemsPerSecond, recursionDepth) {
     // recursionDepth is mainly used for debugging by counting UP as depth increases.
     if(typeof recursionDepth === "undefined") { recursionDepth = 0;} // default value
-    // rawItemArray is also optional. Default is items.raw array.
-    if(typeof rawItemArray === "undefined") { rawitemArray = this.raw;} // default value
     
     var isRounded = false; // Indicates if top level was rounded.
     var itemsPerSecond = reqItemsPerSecond; // Holds true rate in the event of rounding up.
@@ -144,7 +142,7 @@ items.getRecipeRequirements = function(itemName, reqItemsPerSecond, rawItemArray
         rawItems: {}, 
     };
     // Fill requirementsStruct.rawItems from items.raw
-    rawItemArray.forEach(function(rawItemName){
+    this.raw.forEach(function(rawItemName){
         requirementsStruct.rawItems[rawItemName] = {}; // Initialize Struct for Item.
         requirementsStruct.rawItems[rawItemName].name = rawitemName; 
         requirementsStruct.rawItems[rawItemName].itemsPerSecond = 0; // Initialize to zero.
