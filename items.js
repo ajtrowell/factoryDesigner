@@ -197,6 +197,30 @@ var items = {
         recipeArray: [[30,"water"],[30,"petroleumGas"]],
         outputQty: 2
     },
+    ironStick: {
+        name: "ironStick",
+        craftTime: 0.5,
+        recipeArray: [[1,"ironPlate"]],
+        outputQty: 2
+    },
+    flyingRobotFrame: {
+        name: "flyingRobotFrame",
+        craftTime: 20,
+        recipeArray: [[1,"electricEngine"],[2,"battery"],[1,"steelPlate"],[3,"greenCircuit"]],
+        outputQty: 1
+    },
+    constructionRobot: {
+        name: "constructionRobot",
+        craftTime: 0.5,
+        recipeArray: [[1,"flyingRobotFrame"],[2,"greenCircuit"]],
+        outputQty: 1
+    },
+    logisticRobot: {
+        name: "logisticRobot",
+        craftTime: 0.5,
+        recipeArray: [[1,"flyingRobotFrame"],[2,"redCircuit"]],
+        outputQty: 1
+    },
     
 
     // Raw items, base level ingredients.
