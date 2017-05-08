@@ -143,6 +143,30 @@ var items = {
         recipeArray: [[4,"speedModule"],[5,"redCircuit"],[5,"blueCircuit"]],
         outputQty: 1
     },
+    efficiencyModule: {
+        name: "efficiencyModule",
+        craftTime: 15,
+        recipeArray: [[5,"greenCircuit"],[5,"redCircuit"]],
+        outputQty: 1
+    },
+    efficiencyModule2: {
+        name: "efficiencyModule2",
+        craftTime: 30,
+        recipeArray: [[4,"efficiencyModule"],[5,"redCircuit"],[5,"blueCircuit"]],
+        outputQty: 1
+    },
+    productivityModule: {
+        name: "productivityModule",
+        craftTime: 15,
+        recipeArray: [[5,"greenCircuit"],[5,"redCircuit"]],
+        outputQty: 1
+    },
+    productivityModule2: {
+        name: "productivityModule2",
+        craftTime: 30,
+        recipeArray: [[4,"productivityModule"],[5,"redCircuit"],[5,"blueCircuit"]],
+        outputQty: 1
+    },
     blueScience: {
         name: "blueScience",
         craftTime: 12,
@@ -155,17 +179,41 @@ var items = {
         recipeArray: [[3,"greenCircuit"],[5,"ironGear"],[9,"ironPlate"]],
         outputQty: 1
     },
+    redCircuit: {
+        name: "redCircuit",
+        craftTime: 6,
+        recipeArray: [[2,"greenCircuit"],[2,"plasticBar"],[4,"copperCable"]],
+        outputQty: 1
+    },
+    steelPlate: {
+        name: "steelPlate",
+        craftTime: 17.5,
+        recipeArray: [[5,"ironPlate"]],
+        outputQty: 1
+    },
+    sulfur: {
+        name: "sulfur",
+        craftTime: 1,
+        recipeArray: [[30,"water"],[30,"petroleumGas"]],
+        outputQty: 2
+    },
+    
 
     // Raw items, base level ingredients.
-    raw : ["ironPlate","copperPlate","coal",
-        "stoneBricks","lubricant","water","sulfuricAcid"]
+    raw : ["ironOre","copperOre","coal","stone","water","crudeOil",
+        "ironPlate","copperPlate",
+        "lubricant","sulfuricAcid","petroleumGas"]
 };
 
+items.raw.push("stoneBricks");
 items.raw.push("steelPlate");
 items.raw.push("greenCircuit");
 items.raw.push("redCircuit");
 items.raw.push("blueCircuit");
+
 items.raw.push("battery");
+items.raw.push("plasticBar");
+items.raw.push("sulfur");
 
 
 // Need to create a "show raw items" function

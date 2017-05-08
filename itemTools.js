@@ -28,7 +28,7 @@ items.showRecipe = function(itemName) {
             show("");
             
         }
-    }
+    } else {showError(itemName + " not found.")}
 }
 
 items.isValid = function(itemName) {
