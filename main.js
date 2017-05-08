@@ -3,8 +3,10 @@
 
 items.list();
 items.showRecipe("pumpJack");
-var reqStruct = items.getRecipeRequirements("purpleScience",1);
+var reqStruct = items.getRecipeRequirements("blueScience",1);
 var reqStruct = items.getRecipeRequirements("militaryScience",1);
+var reqStruct = items.getRecipeRequirements("purpleScience",1);
+var reqStruct = items.getRecipeRequirements("yellowScience",1);
 
 
     

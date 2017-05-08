@@ -113,15 +113,59 @@ var items = {
         recipeArray: [[1,"copperPlate"]],
         outputQty: 2
     },
+    yellowScience: { // High Tech Science Pack
+        name: "yellowScience",
+        craftTime: 14,
+        recipeArray: [[1,"battery"],[3,"blueCircuit"],[1,"speedModule"],[30,"copperCable"]],
+        outputQty: 2
+    },
+    blueCircuit: {
+        name: "blueCircuit",
+        craftTime: 10,
+        recipeArray: [[20,"greenCircuit"],[2,"redCircuit"],[5,"sulfuricAcid"]],
+        outputQty: 1
+    },
+    battery: {
+        name: "battery",
+        craftTime: 5,
+        recipeArray: [[1,"ironPlate"],[1,"copperPlate"],[20,"sulfuricAcid"]],
+        outputQty: 1
+    },
+    speedModule: {
+        name: "speedModule",
+        craftTime: 15,
+        recipeArray: [[5,"greenCircuit"],[5,"redCircuit"]],
+        outputQty: 1
+    },
+    speedModule2: {
+        name: "speedModule2",
+        craftTime: 30,
+        recipeArray: [[4,"speedModule"],[5,"redCircuit"],[5,"blueCircuit"]],
+        outputQty: 1
+    },
+    blueScience: {
+        name: "blueScience",
+        craftTime: 12,
+        recipeArray: [[1,"redCircuit"],[1,"engine"],[1,"assembler1"]],
+        outputQty: 1
+    },
+    assembler1: {
+        name: "assembler1",
+        craftTime: 0.5,
+        recipeArray: [[3,"greenCircuit"],[5,"ironGear"],[9,"ironPlate"]],
+        outputQty: 1
+    },
 
     // Raw items, base level ingredients.
     raw : ["ironPlate","copperPlate","coal",
-        "stoneBricks","lubricant","water"]
+        "stoneBricks","lubricant","water","sulfuricAcid"]
 };
 
 items.raw.push("steelPlate");
 items.raw.push("greenCircuit");
 items.raw.push("redCircuit");
+items.raw.push("blueCircuit");
+items.raw.push("battery");
 
 
 // Need to create a "show raw items" function
