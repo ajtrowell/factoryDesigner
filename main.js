@@ -31,7 +31,7 @@ function updateViewer() {
     var textBox = document.getElementById("outputText");
     textBox.innerText = "This is a test \n of the emergency update system.";
 
-    var itemNameField = document.getElementById("itemNameBox");
+    var itemNameField = document.getElementById("itemNameList");
     var itemName = itemNameField.value;
     
     // Concat previous textbox contents.
@@ -40,7 +40,7 @@ function updateViewer() {
 
     // var reqRate = 1;
     var reqRateField = document.getElementById("requiredItemRate");
-    var reqRate = parseInt(reqRateField.value);
+    var reqRate = parseFloat(reqRateField.value);
     outputReset();
     items.getRecipeRequirements(itemName,reqRate);
     var output = outputGet();
