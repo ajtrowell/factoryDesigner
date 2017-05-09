@@ -29,15 +29,19 @@
             </select>
 
             
-           <!--<select type="checkbox" checked id="ironPlates" name="ironPlates" value="ironPlates">
-           <select type="checkbox" checked id="greenCircuits" name="greenCircuits" value="greenCircuits">
-           <select type="checkbox" id="redCircuits" name="redCircuits" value="redCircuits">
-           <select type="checkbox" id="blueCircuits" name="blueCircuits" value="blueCircuits">-->
+           <input type="checkbox" checked id="ironPlates" name="ironPlates" value="ironPlates">
+           <input type="checkbox" checked id="greenCircuits" name="greenCircuits" value="greenCircuits">
+           <input type="checkbox" id="redCircuits" name="redCircuits" value="redCircuits">
+           <input type="checkbox" id="blueCircuits" name="blueCircuits" value="blueCircuits">
+
+           <button type="button" id="runButton" onClick="updateViewer();">
+               RUN!
+            </button>
             
         </div>
         
         <div id="main">
-            <textarea id="output" cols="72" rows="30" wrap="soft"></textarea>
+            <textarea id="outputText" cols="72" rows="30" wrap="soft"></textarea>
         </div>
     </div>
 

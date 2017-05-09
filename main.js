@@ -12,6 +12,12 @@ function main() {
 
 main();
 
+
+function updateViewer() {
+    var textBox = document.getElementById("outputText");
+    textBox.innerText = "This is a test \n of the emergency update system.";
+
+}
     
 
 function show(arg) {
