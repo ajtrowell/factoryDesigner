@@ -1,12 +1,15 @@
+var outputString = "";
+var crlf = "&#013;&#010;";
+
 
 function main() {
     
     items.list();
-    items.showRecipe("pumpJack");
-    var reqStruct = items.getRecipeRequirements("blueScience",1);
-    var reqStruct = items.getRecipeRequirements("militaryScience",1);
-    var reqStruct = items.getRecipeRequirements("purpleScience",1);
-    var reqStruct = items.getRecipeRequirements("yellowScience",1);
+    // items.showRecipe("pumpJack");
+    // var reqStruct = items.getRecipeRequirements("blueScience",1);
+    // var reqStruct = items.getRecipeRequirements("militaryScience",1);
+    // var reqStruct = items.getRecipeRequirements("purpleScience",1);
+    // var reqStruct = items.getRecipeRequirements("yellowScience",1);
     
 }
 
@@ -22,13 +25,15 @@ function updateViewer() {
     
     // Concat previous textbox contents.
     var oldText = textBox.innerHTML;
-    var crlf = "&#013;&#010;";
     textBox.innerHTML = oldText + crlf +  itemName;
 
     // var reqRate = 1;
     var reqRateField = document.getElementById("requiredItemRate");
     var reqRate = parseInt(reqRateField.value);
+    outputReset();
     items.getRecipeRequirements(itemName,reqRate);
+    var output = outputGet();
+    textBox.innerHTML = output;
 
 }
     
@@ -36,17 +41,35 @@ function updateViewer() {
 function show(arg) {
     console.log(arg);
     document.write(arg + "<br>");
+    outputAddLine(arg);
 }
 
 function showDebug(arg) {
-    // show(arg); // temp solution
     console.log(arg);
+}
+
+function showOutput(arg) {
+    console.log(arg);
+    outputAddLine(arg);
 }
 
 function showError(arg) {
     console.log(arg);
     document.write("<font color='red'>" + arg + "</font><br>");
     alert(arg);
+}
+
+
+function outputReset() {
+    outputString = "";
+}
+
+function outputGet() {
+    return outputString;
+}
+
+function outputAddLine(lineString) {
+    outputString = outputString + crlf + lineString;
 }
 
 // function prototypes

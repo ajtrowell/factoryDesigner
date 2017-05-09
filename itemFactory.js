@@ -96,38 +96,38 @@ items.getRecipeRequirements = function(itemName, reqItemsPerSecond, recursionDep
     } // for item in rateStruct
     // Display output only if root instance
     if (recursionDepth == 0) {
-        show("");
-        show("******************************");
-        show("####### Factory Design #######");
-        show("******************************");
+        showOutput("");
+        showOutput("******************************");
+        showOutput("####### Factory Design #######");
+        showOutput("******************************");
         // Summary of Objective
-        show("Objective: Produce " + reqItemsPerSecond.toFixed(2) + "  " + itemName + " per second.")
-        if(isRounded) { show("Goal rate rounded up to: " + itemsPerSecond.toFixed(2));}
+        showOutput("Objective: Produce " + reqItemsPerSecond.toFixed(2) + "  " + itemName + " per second.")
+        if(isRounded) { showOutput("Goal rate rounded up to: " + itemsPerSecond.toFixed(2));}
         
         // Was top level rounded up?
         
         
         // Number of assemblers required for each item
-        show("")
-        show("Required Assemblers:")
-        show("------------------------------");
+        showOutput("")
+        showOutput("Required Assemblers:")
+        showOutput("------------------------------");
         for (let itemAssembler in requirementsStruct.assemblers) {
-            show(requirementsStruct.assemblers[itemAssembler].assemblerQty.toFixed(2) + " " + itemAssembler + 
+            showOutput(requirementsStruct.assemblers[itemAssembler].assemblerQty.toFixed(2) + " " + itemAssembler + 
                 " Assemblers");
         } // for itemAssembler in requirementsStruct.assemblers
         
         // itemsPerSecond for each raw material
-        show("");
-        show("Required Raw Material Rates:")
-        show("------------------------------");
+        showOutput("");
+        showOutput("Required Raw Material Rates:")
+        showOutput("------------------------------");
         for (let rawItem in requirementsStruct.rawItems) {
             // Only list items with quantity > 0
             if (requirementsStruct.rawItems[rawItem].itemsPerSecond > 0) {
-                show( requirementsStruct.rawItems[rawItem].itemsPerSecond.toFixed(2) + 
+                showOutput( requirementsStruct.rawItems[rawItem].itemsPerSecond.toFixed(2) + 
                     " units/sec of " + rawItem);
             }
         } // for rawItem in requirementsStruct.rawItem
-        show("");
+        showOutput("");
     }
    
 
