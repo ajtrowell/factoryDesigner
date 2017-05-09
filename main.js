@@ -3,7 +3,8 @@ var crlf = "&#013;&#010;";
 
 
 function main() {
-    
+
+    createRecipeListBox();  
     items.list();
     // items.showRecipe("pumpJack");
     // var reqStruct = items.getRecipeRequirements("blueScience",1);
@@ -16,11 +17,21 @@ function main() {
 main();
 
 
+function createRecipeListBox(){
+    var itemNameListForm = document.getElementById("itemNameList");
+    var itemNameArray = items.list();
+    var itemListStringHTML = "";
+    for (let item in itemNameArray) {
+       itemListStringHTML += "<option>" + itemNameArray[item] + "</option>" + crlf; 
+    }
+    itemNameListForm.innerHTML = itemListStringHTML;
+}
+
 function updateViewer() {
     var textBox = document.getElementById("outputText");
     textBox.innerText = "This is a test \n of the emergency update system.";
 
-    var itemNameField = document.getElementById("itemName");
+    var itemNameField = document.getElementById("itemNameBox");
     var itemName = itemNameField.value;
     
     // Concat previous textbox contents.

@@ -2,17 +2,17 @@
 items.list = function() {
     var keys = Object.keys(this);
     var outputList = [];
-    show("");
-    show("Items List:");
-    show("*****************************"); 
+    showOutput("");
+    showOutput("Items List:");
+    showOutput("*****************************"); 
     for(let i = 0; i<keys.length; ++i) {
         if( this.isValid(keys[i]) ) { // Only display items, not methods
-            show(keys[i]);
+            showOutput(keys[i]);
             outputList.push(keys[i]);
         }
     }
-    show("");
-    return true; // no errors!
+    showOutput("");
+    return outputList;
 }
 
 items.showRecipe = function(itemName) {
