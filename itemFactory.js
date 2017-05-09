@@ -15,12 +15,6 @@ items.getRecipeRequirements = function(itemName, reqItemsPerSecond, recursionDep
         assemblers: {},
         rawItems: {}, 
     };
-    // Fill requirementsStruct.rawItems from items.raw
-    this.raw.forEach(function(rawItemName){
-        requirementsStruct.rawItems[rawItemName] = {}; // Initialize Struct for Item.
-        requirementsStruct.rawItems[rawItemName].name = rawItemName; 
-        requirementsStruct.rawItems[rawItemName].itemsPerSecond = 0; // Initialize to zero.
-    },this);
 
 
     // Define Useful functions for summing assemblers and raw rates:
