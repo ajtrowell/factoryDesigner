@@ -9,9 +9,39 @@
     <script language="javascript" type="text/javascript" src="items.js"></script>
     <script language="javascript" type="text/javascript" src="itemTools.js"></script>
     <script language="javascript" type="text/javascript" src="itemFactory.js"></script>
-    <script language="javascript" type="text/javascript" src="main.js"></script>
+    <!--  Moved the main.js <script> tag to the bottom of the <body> -->
 </head>
 <body>
+    <div id="content"
+        <div id="tools">
+           <input type="text" id="itemName" value="redScience"> 
+           
+           <!--<select id="itemname2" name="item name">
+               <option>bannana</option>
+               <option>cherry</option>
+               <option>lemon</option>
+            </select>-->
+            
+           <select multiple id="rawItems" name="rawItems">
+               <option>greenCircuits</option>
+               <option>redCircuits</option>
+               <option>blueCircuits</option>
+            </select>
+
+            
+           <!--<select type="checkbox" checked id="ironPlates" name="ironPlates" value="ironPlates">
+           <select type="checkbox" checked id="greenCircuits" name="greenCircuits" value="greenCircuits">
+           <select type="checkbox" id="redCircuits" name="redCircuits" value="redCircuits">
+           <select type="checkbox" id="blueCircuits" name="blueCircuits" value="blueCircuits">-->
+            
+        </div>
+        
+        <div id="main">
+            <textarea id="output" cols="72" rows="30" wrap="soft"></textarea>
+        </div>
+    </div>
+
     
+    <script language="javascript" type="text/javascript" src="main.js"></script>
 </body>
 </html>
