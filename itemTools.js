@@ -83,3 +83,23 @@ items.getIngredientsPerSecond = function(itemName, numAssemblers) {
        return ingredientsStruct;
    } // if valid itemName 
 }
+
+items.addRaw = function(itemName) {
+    if (this.isRaw(itemName)) {
+        return 1; // Already raw, nothing else required.
+    } else {
+        this.raw.push(itemName); // item appended to raw array.
+    }
+}
+
+
+items.removeRaw = function(itemName) {
+    if ( !this.isRaw(itemName)) {
+        return 1; // Already NOT raw, nothing required to remove it.
+    } else {
+        var itemIndex = this.raw.indexOf(itemName)
+            if (itemIndex == -1) { showError("removeRaw unable to find itemIndex."); return 0;}
+        this.raw.splice(itemIndex,1); // Removes item from array.
+        return 1;
+    }
+}
