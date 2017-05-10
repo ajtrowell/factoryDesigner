@@ -10,6 +10,14 @@
     <script language="javascript" type="text/javascript" src="itemTools.js"></script>
     <script language="javascript" type="text/javascript" src="itemFactory.js"></script>
     <!--  Moved the main.js <script> tag to the bottom of the <body> -->
+    <style type="text/css">
+        ul { 
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            }
+                
+    </style>
 </head>
 <body>
     <div id="content"
@@ -23,21 +31,35 @@
             </select> <br>
 
            Required Item Rate:
-           <input type="text" id="requiredItemRate" value="1.0"> <br>
+           <input type="text" id="requiredItemRate" value="1.0" size="7"> <br>
            
-            
-            Select Raw items: <br>
-           <select multiple id="rawItems" name="rawItems">
-               <option>greenCircuits</option>
-               <option>redCircuits</option>
-               <option>blueCircuits</option>
-            </select>
-
-            
-           <input type="checkbox" checked id="ironPlates" name="ironPlates" value="ironPlates">
-           <input type="checkbox" checked id="greenCircuits" name="greenCircuits" value="greenCircuits">
-           <input type="checkbox" id="redCircuits" name="redCircuits" value="redCircuits">
-           <input type="checkbox" id="blueCircuits" name="blueCircuits" value="blueCircuits">
+           <div id="rawBox"> 
+                Select Raw items: <br>
+            <!--<select multiple id="rawItems" name="rawItems">
+                <option>greenCircuits</option>
+                <option>redCircuits</option>
+                <option>blueCircuits</option>
+                </select>-->
+                
+                <ul id="rawList">
+                    <li>
+                        <input type="checkbox" checked id="ironPlates" name="ironPlates" value="ironPlates">
+                        ironPlates
+                    </li>
+                    <li>
+                        <input type="checkbox" checked id="greenCircuits" name="greenCircuits" value="greenCircuits">
+                        greenCircuits
+                    </li>
+                    <li>
+                        <input type="checkbox" id="redCircuits" name="redCircuits" value="redCircuits">
+                        redCircuits
+                    </li>
+                    <li>
+                        <input type="checkbox" id="blueCircuits" name="blueCircuits" value="blueCircuits">
+                        blueCircuits
+                    </li>
+                </ul>
+           </div>
 
            <button type="button" id="runButton" onClick="updateViewer();">
                RUN!
@@ -46,7 +68,7 @@
         </div>
         
         <div id="main">
-            <textarea id="outputText" cols="72" rows="30" wrap="soft"></textarea>
+            <textarea id="outputText" cols="60" rows="30" wrap="soft"></textarea>
         </div>
     </div>
 
