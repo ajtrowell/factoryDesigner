@@ -4,7 +4,8 @@ var crlf = "&#013;&#010;";
 
 function main() {
 
-    createRecipeListBox();  
+    createRecipeListUI();  
+    createRawOptionsUI();
     items.list();
     // items.showRecipe("pumpJack");
     // var reqStruct = items.getRecipeRequirements("blueScience",1);
@@ -17,7 +18,7 @@ function main() {
 main();
 
 
-function createRecipeListBox(){
+function createRecipeListUI(){
     var itemNameListForm = document.getElementById("itemNameList");
     var itemNameArray = items.list();
     var itemListStringHTML = "";
@@ -25,6 +26,24 @@ function createRecipeListBox(){
        itemListStringHTML += "<option>" + itemNameArray[item] + "</option>" + crlf; 
     }
     itemNameListForm.innerHTML = itemListStringHTML;
+}
+
+function createRawOptionsUI() {
+    var rawListControl = document.getElementById("rawList");    
+    var rawOptions = items.rawOptional; // simple name for convenience.
+    var itemRawOptionsStringHTML = ""; // holds new HTML for raw checkboxes.
+    for ( let index in rawOptions) {
+        var rawItem = rawOptions[index];
+        var checkString = ""; // default to not-checked.
+        if (items.isRaw(rawItem)) { checkString = "checked ";}
+        itemRawOptionsStringHTML += 
+        "<li>" + crlf +
+             '<input type="checkbox" ' + checkString + ' id="' + rawItem + '" name="' + rawItem  + '" value="' + rawItem + '">' + crlf +
+            rawItem + crlf +
+        "</li>" + crlf;
+    } 
+    rawListControl.innerHTML = itemRawOptionsStringHTML; // Apply HTML string.
+    
 }
 
 function updateViewer() {

@@ -231,6 +231,7 @@ var items = {
 
 items.raw.push("stoneBricks");
 items.raw.push("steelPlate");
+
 items.raw.push("greenCircuit");
 items.raw.push("redCircuit");
 items.raw.push("blueCircuit");
@@ -239,6 +240,14 @@ items.raw.push("battery");
 items.raw.push("plasticBar");
 items.raw.push("sulfur");
 
+
+// Designate certain raw items as "optional," able to be de-selected.
+items.rawOptional = [];
+items.rawOptional.push("greenCircuit");
+items.rawOptional.push("redCircuit");
+items.rawOptional.push("blueCircuit");
+
+items.rawOptional.push("ironGear");
 
 // Need to create a "show raw items" function
 // Create a validator for the items:
