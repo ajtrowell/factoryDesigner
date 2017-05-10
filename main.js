@@ -38,7 +38,7 @@ function createRawOptionsUI() {
         if (items.isRaw(rawItem)) { checkString = "checked ";}
         itemRawOptionsStringHTML += 
         "<li>" + crlf +
-             '<input type="checkbox" ' + checkString + ' id="' + rawItem + '" name="' + rawItem  + '" value="' + rawItem + '">' + crlf +
+             '<input type="checkbox" ' + checkString + ' class="rawOptions" id="' + rawItem + '" name="' + rawItem  + '" value="' + rawItem + '">' + crlf +
             rawItem + crlf +
         "</li>" + crlf;
     } 
@@ -46,9 +46,26 @@ function createRawOptionsUI() {
     
 }
 
+function updateRawSelection() {
+    var rawOptionsCheckboxControlArray = document.getElementsByClassName("rawOptions");
+    for (let i = 0; i<rawOptionsCheckboxControlArray.length; ++i) {
+        let itemName = rawOptionsCheckboxControlArray[i].value;   
+        let isChecked = rawOptionsCheckboxControlArray[i].checked;   
+
+        if(isChecked) { 
+            items.addRaw(itemName);
+        } else {
+            items.removeRaw(itemName);
+        }
+
+    }
+    
+}
+
+
 function updateViewer() {
     var textBox = document.getElementById("outputText");
-    textBox.innerText = "This is a test \n of the emergency update system.";
+    updateRawSelection();
 
     var itemNameField = document.getElementById("itemNameList");
     var itemName = itemNameField.value;
