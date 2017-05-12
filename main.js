@@ -38,7 +38,8 @@ function createRawOptionsUI() {
         if (items.isRaw(rawItem)) { checkString = "checked ";}
         itemRawOptionsStringHTML += 
         "<li>" + crlf +
-             '<input type="checkbox" ' + checkString + ' class="rawOptions" id="' + rawItem + '" name="' + rawItem  + '" value="' + rawItem + '">' + crlf +
+             '<input type="checkbox" ' + checkString + ' class="rawOptions" id="' + 
+             rawItem + '" name="' + rawItem  + '" value="' + rawItem + '" onChange="updateViewer();">' + crlf +
             rawItem + crlf +
         "</li>" + crlf;
     } 

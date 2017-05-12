@@ -24,14 +24,14 @@
         <div id="tools">
             Item Name:
            <!--<input type="text" id="itemNameBox" value="redScience"> <br>-->
-           <select id="itemNameList" name="item name">
+           <select id="itemNameList" name="item name" onChange="updateViewer();">
                <option>bannana</option>
                <option>cherry</option>
                <option>lemon</option>
             </select> <br>
 
            Required Item Rate:
-           <input type="text" id="requiredItemRate" value="1.0" size="7"> <br>
+           <input type="text" id="requiredItemRate" value="1.0" size="7" onChange="updateViewer();"> <br>
            
            <div id="rawBox"> 
                 Select Raw items: <br>
