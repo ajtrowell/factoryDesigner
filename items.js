@@ -53,6 +53,24 @@ var items = {
         recipeArray: [[20,"greenCircuit"],[2,"redCircuit"],[5,"sulfuricAcid"]],
         outputQty: 1
     },
+    yellowBelt: {
+        name: "yellowBelt",
+        craftTime: 0.5,
+        recipeArray: [[1,"ironPlate"],[1,"ironGear"]],
+        outputQty: 2
+    },
+    redBelt: {
+        name: "redBelt",
+        craftTime: 0.5,
+        recipeArray: [[5,"ironGear"],[1,"yellowBelt"]],
+        outputQty: 1
+    },
+    blueBelt: {
+        name: "blueBelt",
+        craftTime: 0.5,
+        recipeArray: [[10,"ironGear"],[1,"redBelt"],[20,"lubricant"]],
+        outputQty: 1
+    },
     speedModule: {
         name: "speedModule",
         craftTime: 15,
@@ -105,6 +123,12 @@ var items = {
         name: "logisticRobot",
         craftTime: 0.5,
         recipeArray: [[1,"flyingRobotFrame"],[2,"redCircuit"]],
+        outputQty: 1
+    },
+    laserTurret: {
+        name: "laserTurret",
+        craftTime: 20,
+        recipeArray: [[12,"battery"],[20,"greenCircuit"],[20,"steelPlate"]],
         outputQty: 1
     },
     pumpJack: {
@@ -173,18 +197,6 @@ var items = {
         recipeArray: [[1,"greenCircuit"],[1,"ironGear"],[1,"ironPlate"]],
         outputQty: 1
     },
-    yellowBelt: {
-        name: "yellowBelt",
-        craftTime: 0.5,
-        recipeArray: [[1,"ironPlate"],[1,"ironGear"]],
-        outputQty: 2
-    },
-    redBelt: {
-        name: "redBelt",
-        craftTime: 0.5,
-        recipeArray: [[5,"ironGear"],[1,"yellowBelt"]],
-        outputQty: 1
-    },
     copperCable: {
         name: "copperCable",
         craftTime: 0.5,
@@ -247,6 +259,7 @@ items.rawOptional.push("greenCircuit");
 items.rawOptional.push("redCircuit");
 items.rawOptional.push("blueCircuit");
 
+items.rawOptional.push("steelPlate");
 items.rawOptional.push("ironGear");
 
 // Need to create a "show raw items" function
