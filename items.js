@@ -5,10 +5,10 @@ var items = {
         recipeArray: [[1,"battery"],[3,"blueCircuit"],[1,"speedModule"],[30,"copperCable"]],
         outputQty: 2
     },
-    purpleScience: {
+    purpleScience: { // Production Science
         name: "purpleScience",
         craftTime: 14,
-        recipeArray: [[1,"pumpJack"],[1,"electricEngine"],[1,"electricFurnace"]],
+        recipeArray: [[1,"assembler1"],[1,"electricEngine"],[1,"electricFurnace"]],
         outputQty: 2
     },
     militaryScience: {
@@ -20,7 +20,7 @@ var items = {
     blueScience: { // Science 3
         name: "blueScience",
         craftTime: 12,
-        recipeArray: [[1,"redCircuit"],[1,"engine"],[1,"assembler1"]],
+        recipeArray: [[1,"redCircuit"],[1,"engine"],[1,"electricDrill"]],
         outputQty: 1
     },
     greenScience: { // Science 2
@@ -133,7 +133,7 @@ var items = {
     },
     pumpJack: {
         name: "pumpJack",
-        craftTime: 10,
+        craftTime: 5,
         recipeArray: [[5,"steelPlate"],[10,"ironGear"],[5,"greenCircuit"]],
         outputQty: 1
     },
@@ -165,6 +165,12 @@ var items = {
         name: "electricFurnace",
         craftTime: 5,
         recipeArray: [[10,"steelPlate"],[5,"redCircuit"],[10,"stoneBricks"]],
+        outputQty: 1
+    },
+    electricDrill: {
+        name: "electricDrill",
+        craftTime: 2,
+        recipeArray: [[3,"greenCircuit"],[5,"ironGear"],[10,"ironPlate"]],
         outputQty: 1
     },
     piercingMagazine: {
